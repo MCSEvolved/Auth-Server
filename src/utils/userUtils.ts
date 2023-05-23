@@ -23,10 +23,9 @@ export async function setRoleOnUser(role: {name: Roles, value: boolean}, current
     } else {
         roleClaims[role.name] = role.value;
     }
-
-    
     await getAuth().setCustomUserClaims(
         currentClaims.sub,
         roleClaims
     );
+    console.log('Claims updated');
 }
