@@ -1,30 +1,23 @@
 import { DecodedIdToken, getAuth } from "firebase-admin/auth";
 import { Roles } from "../types";
 
-export async function setRoleOnUser(role: {name: Roles, value: boolean}, currentClaims: DecodedIdToken) {
+export async function setRoleOnUser(role: Roles, userUID: string) {
+    if (typeof userUID === 'undefined') {
+        console.log('User has no uid');
+        return;
+    }
+
+    if (typeof role === 'undefined') {
+        console.log('Role is undefined');
+        return;
+    }
 
     let roleClaims = {
-        [Roles.player]: currentClaims[Roles.player] || false,
-        [Roles.admin]: currentClaims[Roles.admin] || false,
-        [Roles.guest]: currentClaims[Roles.guest] || false,
+        role
     }
 
-    // If role is guest, set all other roles to false
-    if (role.name === Roles.guest && role.value === true) {
-        roleClaims = {
-            [Roles.player]: false,
-            [Roles.admin]: false,
-            [role.name]: role.value,
-        };
-    // If role is admin or player, set guest to false
-    } else if ((role.name === Roles.player || role.name === Roles.admin) && role.value === true) {
-        roleClaims.isGuest = false;
-        roleClaims[role.name] = role.value;
-    } else {
-        roleClaims[role.name] = role.value;
-    }
     await getAuth().setCustomUserClaims(
-        currentClaims.sub,
+        userUID,
         roleClaims
     );
     console.log('Claims updated');

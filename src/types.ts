@@ -1,5 +1,7 @@
 export enum Roles {
     player = "isPlayer",
     admin = "isAdmin",
-    guest = "isGuest"
+    guest = "isGuest",
+    service = "isService",
+    minecraft = "isMinecraft"
 }
