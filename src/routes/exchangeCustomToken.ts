@@ -9,7 +9,7 @@ import { Roles } from "../types";
 
 const router = express.Router();
 
-router.get('/', async (req, res) => 
+router.post('/', async (req, res) => 
 {
     console.log('Received exchange custom token request')
     //get custom token from header
