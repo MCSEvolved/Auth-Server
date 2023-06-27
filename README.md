@@ -4,8 +4,9 @@ The auth server is a server that handles all authentication and authorization th
 ## Checking user roles
 After registration at firebase, frontend apps should send the idToken to the auth server to set the corresponding roles on the user.
 
+|Method|Post|
+|--|--|
 |Endpoint|/auth/check-user-roles|
-|--|--| 
 |Header-Param|authorization|
 
 Add a header with:
@@ -29,8 +30,9 @@ The idtoken can typically be refreshed by calling:
 ## Exchange custom tokens
 Services can create their own custom tokens at firebase to authenticate with the auth server. This way a service can retreive an idToken which can be validated by any service or client apps using the normal firebase sdk.
 
-|Endpoint|/auth/exchange-custom-token|
+|Method|Get|
 |--|--| 
+|Endpoint|/auth/exchange-custom-token|
 |Header-Param|custom-token|
 
 Add a header with:
@@ -53,9 +55,9 @@ Please report any status code 500 errors.
 It's possible to retreive a user's claims through the auth server. I'm not sure this is the best way as any client should be able to handle verification of idtokens themselves with the normal firebase SDK.  
 #### This works for any idtoken, not just users.
 
-
-|Endpoint|/auth/get-user-claims|
+|Method|Get|
 |--|--| 
+|Endpoint|/auth/get-user-claims|
 |Header-Param|authorization|
 
 Add a header with: 
