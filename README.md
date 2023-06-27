@@ -1,4 +1,4 @@
 # Auth Server
-A backend server for handling all authentication and authorization things with the Firebase Admin SDK. 
+The auth server is a server that handles all authentication and authorization that needs the firebase admin SDK. It also contains some non admin features to make sure this gets handled in one place by seperating the logic from the other services. 
 
-Currently it provides a way to assign roles to users and request claims from an jwt idtoken.
+## Checking user roles
