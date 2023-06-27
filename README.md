@@ -49,9 +49,9 @@ For now the refreshtoken does not have a use.
 The response can also be a status code 400 with a clear error message.
 Please report any status code 500 errors.
 
-## Get a users claims.
-
-It's possible to retreive a user's claims through the auth server. I'm not sure this is the best way as any client should be able to handle verification of idtokens themselves with the normal firebase SDK.
+## Get a user's claims
+It's possible to retreive a user's claims through the auth server. I'm not sure this is the best way as any client should be able to handle verification of idtokens themselves with the normal firebase SDK.  
+#### This works for any idtoken, not just users.
 
 
 |Endpoint|/auth/get-user-claims|
