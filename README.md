@@ -30,7 +30,7 @@ The idtoken can typically be refreshed by calling:
 ## Exchange custom tokens
 Services can create their own custom tokens at firebase to authenticate with the auth server. This way a service can retreive an idToken which can be validated by any service or client apps using the normal firebase sdk.
 
-|Method|Get|
+|Method|POST|
 |--|--| 
 |Endpoint|/auth/exchange-custom-token|
 |Header-Param|custom-token|
