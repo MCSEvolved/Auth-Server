@@ -68,7 +68,7 @@ The response should be a status code 200 looking like this:
 ```json
 {
   "email": "my_email@mcs.nl",
-  "isPlayer",
+  "role": "isService",
   "etc"
 }
 ```
