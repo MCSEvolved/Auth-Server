@@ -9,17 +9,20 @@ import { verifyIdToken } from '../utils/authUtils';
 const router = express.Router()
 
 
-router.post('/', bodyParser.json(), async (req: Request, res: Response) => {
-    const idtoken: string = req.body.idtoken;
+router.post('/', async (req: Request, res: Response) => {
 
+    // Get the idtoken from the authorization header
+    const idtoken = req.get('authorization');
+    if (!idtoken) return res.status(400).send('No idtoken provided under authorization header');
+    
     // Verify the idtoken
     const claims = await verifyIdToken(idtoken)
-    if (claims === null) return res.status(400).send('Error while verifying idtoken');
+    if (!claims) return res.status(400).send('Error while verifying idtoken');
 
     console.log('Checking roles for user: ' + claims.email);
 
     // Check if user has a Microsoft account
-    if (typeof claims.email === 'undefined') {
+    if (!claims.email) {
         console.log('User has no email address');
         return res.status(400).send('User has no email address');
     }
