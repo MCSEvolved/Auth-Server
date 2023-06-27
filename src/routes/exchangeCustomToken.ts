@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => 
 {
+    console.log('Received exchange custom token request')
     //get custom token from header
     const customToken = req.get('custom-token')
     if (!customToken) {
@@ -32,12 +33,14 @@ router.get('/', async (req, res) =>
         return
     }
 
+    console.log("custom token verified, setting isService role")
     //set service role
     await setRoleOnUser(Roles.service, user.uid);
 
     //get new token with role
     let idToken = await user.getIdToken(true);
 
+    console.log("sending new token")
     res.status(200).send({ "idToken": idToken, "refreshToken": user.refreshToken });
 });
 

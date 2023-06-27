@@ -1,19 +1,24 @@
 import './env';
 import express from 'express';
-import { applicationDefault, initializeApp as initializeAdminApp } from 'firebase-admin/app';
+import { initializeApp as initializeAdminApp } from 'firebase-admin/app';
 import endpoints from './src/routes/endpoints';
 import cors from 'cors';
 import { connectToDB } from './src/database';
+import { initializeApp } from 'firebase/app';
+import { credential } from 'firebase-admin';
 
 
 const app = express();
 
-// Initialize the default admin app
-initializeAdminApp({
-    credential: applicationDefault()
-});
+//  Get firebase admin credentials
+const FIREBASE_CREDENTIALS_PATH = process.env.FIREBASE_CREDENTIALS_PATH
+if (!FIREBASE_CREDENTIALS_PATH) throw new Error('No FIREBASE_CREDENTIALS_PATH provided');
+const cred = credential.cert(FIREBASE_CREDENTIALS_PATH)
 
-import { initializeApp } from 'firebase/app';
+// Initialize the firebase admin app
+initializeAdminApp({
+    credential: cred,
+});
 
 // Initialize the default firebase app
 const firebaseConfig = {
@@ -28,10 +33,8 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-
-
 const main = async () => {
-    // Trust the proxy
+    // Trust the proxy (Nginx)
     app.set('trust proxy', true);
 
     // Enable CORS
