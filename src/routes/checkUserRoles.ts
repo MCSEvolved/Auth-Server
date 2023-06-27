@@ -12,8 +12,8 @@ const router = express.Router()
 router.post('/', async (req: Request, res: Response) => {
 
     // Get the idtoken from the authorization header
-    const idtoken = req.get('authorization');
-    if (!idtoken) return res.status(400).send('No idtoken provided under authorization header');
+    const idtoken = req.get('Authorization');
+    if (!idtoken) return res.status(400).send('No idtoken provided under Authorization header');
     
     // Verify the idtoken
     const claims = await verifyIdToken(idtoken)
