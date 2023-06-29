@@ -41,10 +41,7 @@ Add a header with:
 
 The response should be a status code 200 looking like this:
 ```json
-{
-  "idToken": "abcMyIDToken",
-  "refreshToken":"myUselessRefreshToken"
-}
+sdhfjshefhsdjfhsdthisIsAToken
 ```
 For now the refreshtoken does not have a use.
 
