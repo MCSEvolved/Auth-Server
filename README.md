@@ -1,12 +1,12 @@
 # Auth Server
 The auth server is a server that handles all authentication and authorization that needs the firebase admin SDK. It also contains some non admin features to make sure this gets handled in one place by seperating the logic from the other services. 
 
-## Checking user roles
+## Checking user roles after registration
 After registration at firebase, frontend apps should send the idToken to the auth server to set the corresponding roles on the user.
 
 |Method|Post|
 |--|--|
-|Endpoint|/auth/check-user-roles|
+|Endpoint|/auth/check-new-user|
 |Header-Param|authorization|
 
 Add a header with:
@@ -17,7 +17,7 @@ The response should be a status code 200.
 If a user's roles changed, the idtoken should be refreshed by the client. To tell the client this happened, the response will contain a response looking like this:
 ```json
 {
-  "shoudlRefreshToken": true
+  "shouldRefreshToken": true
 }
 ```
 If the roles did not change, this will be false. 

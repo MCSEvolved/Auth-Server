@@ -1,6 +1,6 @@
 import express from "express";
 import isAlive from './isAlive';
-import checkNewUser from './checkUserRoles';
+import checkNewUser from './checkNewUser';
 import getUserClaims from './getUserClaims';
 import exchangeCustomToken from './exchangeCustomToken';
 import defaultRoute from './defaultRoute';
