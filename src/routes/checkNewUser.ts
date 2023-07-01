@@ -47,7 +47,7 @@ router.post('/', async (req: Request, res: Response) => {
     // If user is not a player, set role to guest
     setRoleOnUser(Roles.guest, claims.sub);
     console.log('User is not a player or admin, setting role to guest');
-    res.status(200).send({'shouldRefreshToken': false});
+    res.status(200).send({'shouldRefreshToken': true});
 });
 
 export default router;
