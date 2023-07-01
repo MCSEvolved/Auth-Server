@@ -73,6 +73,9 @@ The response should be a status code 200 looking like this:
 ```
 
 The response can also be a status code 400 with a clear error message.
+
+One of the error messages is "Idtoken expired". Which means the idtoken is expired and should be refreshed by the client.
+
 Please report any status code 500 errors.
 
 ## Generate ID Token for minecraft server
