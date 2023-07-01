@@ -41,7 +41,7 @@ router.post('/', async (req, res) =>
     let idToken = await user.getIdToken(true);
 
     console.log("sending new token")
-    res.status(200).send(idToken);
+    res.status(200).send({'idToken': idToken});
 });
 
 export default router;
