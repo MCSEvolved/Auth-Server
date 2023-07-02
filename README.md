@@ -20,7 +20,6 @@ If a user's roles changed, the idtoken should be refreshed by the client. To tel
   "shouldRefreshToken": true
 }
 ```
-If the roles did not change, this will be false. 
 
 The idtoken can typically be refreshed by calling:
 ```javascript
