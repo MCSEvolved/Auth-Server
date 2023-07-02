@@ -11,9 +11,13 @@ export async function connectToDB() {
     connection.addListener('close', () => {
         cachedDB = null;
     });
-    cachedDB = connection.db();
+    cachedDB = connection.db("users");
 }
 
 export function getDB() {
     return cachedDB;
+}
+
+export function checkIfCollectionExists(collName: string) {
+    return cachedDB.listCollections({ name: collName }).hasNext();
 }

@@ -1,9 +1,15 @@
-import { getDB } from "../database";
+import { checkIfCollectionExists, getDB } from "../database";
 
 export async function checkUserIsPlayer(_email: string): Promise<boolean> {
-    const result = await getDB().collection('Players').findOne({email: _email});
-    if (result) {
-        return true;
-    }
-    return false;
+    if (!checkIfCollectionExists('players')) throw new Error('Collection players does not exist');
+    const result = getDB().collection('players').findOne({email: _email});
+    if(!result) return false;
+    return true;
+}
+
+export async function checkUserIsAdmin(_email: string): Promise<boolean> {
+    if (!checkIfCollectionExists('admins')) throw new Error('Collection admins does not exist');
+    const result = await getDB().collection('admins').findOne({email: _email});
+    if(!result) return false;
+    return true;
 }
